@@ -1,5 +1,5 @@
 ﻿WPF-calculator
-1.0.0.0
+
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\pablo.jofre\Documents\GitHub\programmering-2-calculator\WPF-calculator\App.xaml
 11151548125
 
-61621088832
+41725344024
 1921654412462
 MainWindow.xaml;
 
-True
+False
 

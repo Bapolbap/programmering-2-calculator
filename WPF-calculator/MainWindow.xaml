@@ -5,22 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_calculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="750" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-
+            <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Button Click="Button_Click" Grid.Column="0" Grid.Row="0" FontSize="30" Content="AC"></Button>
+            <Button Click="Button_Click" Grid.Column="1" Grid.Row="0" FontSize="30" Content="±"></Button>
+            <Button Click="Button_Click" Grid.Column="2" Grid.Row="0" FontSize="30" Content="%"></Button>
+            <Button Click="Button_Click" Grid.Column="3" Grid.Row="0" FontSize="30" Content="÷"></Button>
+            <Button Click="Button_Click" Grid.Column="0" Grid.Row="1" FontSize="30" Content="7"></Button>
+            <Button Click="Button_Click" Grid.Column="1" Grid.Row="1" FontSize="30" Content="8"></Button>
+            <Button Click="Button_Click" Grid.Column="2" Grid.Row="1" FontSize="30" Content="9"></Button>
+            <Button Click="Button_Click" Grid.Column="3" Grid.Row="1" FontSize="30" Content="×"></Button>
+            <Button Click="Button_Click" Grid.Column="0" Grid.Row="2" FontSize="30" Content="4"></Button>
+            <Button Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="30" Content="5"></Button>
+            <Button Click="Button_Click" Grid.Column="2" Grid.Row="2" FontSize="30" Content="6"></Button>
+            <Button Click="Button_Click" Grid.Column="3" Grid.Row="2" FontSize="30" Content="-"></Button>
+            <Button Click="Button_Click" Grid.Column="0" Grid.Row="3" FontSize="30" Content="1"></Button>
+            <Button Click="Button_Click" Grid.Column="1" Grid.Row="3" FontSize="30" Content="2"></Button>
+            <Button Click="Button_Click" Grid.Column="2" Grid.Row="3" FontSize="30" Content="3"></Button>
+            <Button Click="Button_Click" Grid.Column="3" Grid.Row="3" FontSize="30" Content="+"></Button>
+            <Button Click="Button_Click" Grid.ColumnSpan="2" Grid.Row="4" FontSize="30" Content="0"></Button>
+            <Button Click="Button_Click" Grid.Column="2" Grid.Row="4" FontSize="30" Content="."></Button>
+            <Button Click="Button_Click" Grid.Column="3" Grid.Row="4" FontSize="30" Content="="></Button>
+
+
+        </Grid>
+        <TextBlock Name="Textfield" Text="" FontSize="50"></TextBlock>
+        
     </Grid>
+    
 </Window>

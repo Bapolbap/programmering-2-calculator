@@ -24,5 +24,75 @@ namespace WPF_calculator
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(e.Source is Button button)
+            {
+                switch (button.Content)
+                {
+                    case "0":
+                        if(Textfield.Text.Length >= 1 && Textfield.Text[0] != '0')
+                        {
+                            Textfield.Text += button.Content;
+                        }
+                    break;
+
+                    case "1":
+                    case "2":
+                    case "3":
+                    case "4":
+                    case "5":
+                    case "6":
+                    case "7":
+                    case "8":
+                    case "9":
+                    case "=":
+                        Textfield.Text += button.Content;
+                    break;
+
+                    case "AC":
+                        Textfield.Text = "";
+                    break;
+
+                    case ".":
+                        if(Textfield.Text.Length == 0)
+                        {
+                            Textfield.Text += "0.";
+                        } else if(Textfield.Text.Contains("."))
+                        {
+                            //gör inget
+                            break;
+                        }
+                        else
+                        {
+                            Textfield.Text += ".";
+                        }
+                    break;
+
+                    case "±":
+                        if(Textfield.Text[0] == '-')
+                        {
+                            Textfield.Text = Textfield.Text.Substring(1);
+                        } else
+                        {
+                            Textfield.Text = "-" + Textfield.Text;
+                        }
+                    break;
+
+                    case "+":
+                    case "-":
+                    case "×":
+                    case "÷":
+                    case "%":
+                        if(Textfield.Text.Length != 0)
+                        {
+                            Console.WriteLine("bruh");
+                        }
+                    break;
+                }
+            }
+        }
+
     }
 }
