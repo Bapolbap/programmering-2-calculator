@@ -29,29 +29,29 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button Click="Button_Click" Grid.Column="0" Grid.Row="0" FontSize="30" Content="AC"></Button>
-            <Button Click="Button_Click" Grid.Column="1" Grid.Row="0" FontSize="30" Content="±"></Button>
-            <Button Click="Button_Click" Grid.Column="2" Grid.Row="0" FontSize="30" Content="( )"></Button>
-            <Button Click="Button_Click" Grid.Column="3" Grid.Row="0" FontSize="30" Content="÷"></Button>
-            <Button Click="Button_Click" Grid.Column="0" Grid.Row="1" FontSize="30" Content="7"></Button>
-            <Button Click="Button_Click" Grid.Column="1" Grid.Row="1" FontSize="30" Content="8"></Button>
-            <Button Click="Button_Click" Grid.Column="2" Grid.Row="1" FontSize="30" Content="9"></Button>
-            <Button Click="Button_Click" Grid.Column="3" Grid.Row="1" FontSize="30" Content="×"></Button>
-            <Button Click="Button_Click" Grid.Column="0" Grid.Row="2" FontSize="30" Content="4"></Button>
-            <Button Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="30" Content="5"></Button>
-            <Button Click="Button_Click" Grid.Column="2" Grid.Row="2" FontSize="30" Content="6"></Button>
-            <Button Click="Button_Click" Grid.Column="3" Grid.Row="2" FontSize="30" Content="-"></Button>
-            <Button Click="Button_Click" Grid.Column="0" Grid.Row="3" FontSize="30" Content="1"></Button>
-            <Button Click="Button_Click" Grid.Column="1" Grid.Row="3" FontSize="30" Content="2"></Button>
-            <Button Click="Button_Click" Grid.Column="2" Grid.Row="3" FontSize="30" Content="3"></Button>
-            <Button Click="Button_Click" Grid.Column="3" Grid.Row="3" FontSize="30" Content="+"></Button>
-            <Button Click="Button_Click" Grid.ColumnSpan="2" Grid.Row="4" FontSize="30" Content="0"></Button>
-            <Button Click="Button_Click" Grid.Column="2" Grid.Row="4" FontSize="30" Content=","></Button>
-            <Button Click="Button_Click" Grid.Column="3" Grid.Row="4" FontSize="30" Content="="></Button>
+            <Button Click="Button_Click" Background="#677F99" Grid.Column="0" Grid.Row="0" FontSize="30" Content="AC"></Button>
+            <Button Click="Button_Click" Background="#677F99" Grid.Column="1" Grid.Row="0" FontSize="30" Content="±"></Button>
+            <Button Click="Button_Click" Background="#677F99" Grid.Column="2" Grid.Row="0" FontSize="30" Content="( )"></Button>
+            <Button Click="Button_Click" Background="#FDBFAE" Grid.Column="3" Grid.Row="0" FontSize="30" Content="÷"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.Column="0" Grid.Row="1" FontSize="30" Content="7"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.Column="1" Grid.Row="1" FontSize="30" Content="8"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.Column="2" Grid.Row="1" FontSize="30" Content="9"></Button>
+            <Button Click="Button_Click" Background="#FDBFAE" Grid.Column="3" Grid.Row="1" FontSize="30" Content="×"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.Column="0" Grid.Row="2" FontSize="30" Content="4"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.Column="1" Grid.Row="2" FontSize="30" Content="5"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.Column="2" Grid.Row="2" FontSize="30" Content="6"></Button>
+            <Button Click="Button_Click" Background="#FDBFAE" Grid.Column="3" Grid.Row="2" FontSize="30" Content="-"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.Column="0" Grid.Row="3" FontSize="30" Content="1"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.Column="1" Grid.Row="3" FontSize="30" Content="2"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.Column="2" Grid.Row="3" FontSize="30" Content="3"></Button>
+            <Button Click="Button_Click" Background="#FDBFAE" Grid.Column="3" Grid.Row="3" FontSize="30" Content="+"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.ColumnSpan="2" Grid.Row="4" FontSize="30" Content="0"></Button>
+            <Button Click="Button_Click" Background="#ABBAC9" Grid.Column="2" Grid.Row="4" FontSize="30" Content=","></Button>
+            <Button Click="Button_Click" Background="#CC9995" Grid.Column="3" Grid.Row="4" FontSize="30" Content="="></Button>
 
 
         </Grid>
-        <TextBlock Name="Textfield" Text="" FontSize="50"></TextBlock>
+        <TextBlock Name="Textfield" Background="#D3FCFB" Text="" FontSize="50"></TextBlock>
         
     </Grid>
     
