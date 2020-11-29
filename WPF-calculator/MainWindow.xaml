@@ -31,7 +31,7 @@
 
             <Button Click="Button_Click" Grid.Column="0" Grid.Row="0" FontSize="30" Content="AC"></Button>
             <Button Click="Button_Click" Grid.Column="1" Grid.Row="0" FontSize="30" Content="±"></Button>
-            <Button Click="Button_Click" Grid.Column="2" Grid.Row="0" FontSize="30" Content="%"></Button>
+            <Button Click="Button_Click" Grid.Column="2" Grid.Row="0" FontSize="30" Content="( )"></Button>
             <Button Click="Button_Click" Grid.Column="3" Grid.Row="0" FontSize="30" Content="÷"></Button>
             <Button Click="Button_Click" Grid.Column="0" Grid.Row="1" FontSize="30" Content="7"></Button>
             <Button Click="Button_Click" Grid.Column="1" Grid.Row="1" FontSize="30" Content="8"></Button>

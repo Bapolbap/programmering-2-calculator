@@ -20,9 +20,15 @@ namespace WPF_calculator
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Number _number = new Number();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public void initializeComponents()
+        {
+            List<string> computeArray = new List<string>();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -71,27 +77,77 @@ namespace WPF_calculator
                     break;
 
                     case "±":
-                        if(Textfield.Text[0] == '-')
+                        if(Textfield.Text.Length != 0)
                         {
-                            Textfield.Text = Textfield.Text.Substring(1);
+                            if (Textfield.Text[0] == '-')
+                            {
+                                Textfield.Text = Textfield.Text.Substring(1);
+                            }
+                            else
+                            {
+                                Textfield.Text = "-" + Textfield.Text;
+                            }
                         } else
                         {
-                            Textfield.Text = "-" + Textfield.Text;
+                            Textfield.Text = "-";
                         }
+
                     break;
 
                     case "+":
                     case "-":
                     case "×":
                     case "÷":
-                    case "%":
-                        if(Textfield.Text.Length != 0)
-                        {
-                            Console.WriteLine("bruh");
-                        }
+                    case "( )":
+
                     break;
                 }
             }
+        }
+
+        private List<string> ShuntingYard(List<string> infixStack)
+        {
+            List<string> postfixStack = new List<string>();
+            List<string> operatorStack = new List<string>();
+
+            foreach(string i in infixStack)
+            {
+                if(Number.IsNumber(i))
+                {
+                    postfixStack.Add(i);
+                }
+                else if(Operation.IsOperation(i))
+                {
+                    while((operatorStack.Count != 0) && (Operation.Priority(operatorStack.Last()) > Operation.Priority(i)) && (operatorStack.Last() != "("))
+                    {
+                        postfixStack.Add(operatorStack.Last());
+                    }
+                    operatorStack.Add(i);
+                }
+                else if(i == "(")
+                {
+                    operatorStack.Add(i);
+                }
+                else if(i == ")")
+                {
+                    while(operatorStack.Last() != "(")
+                    {
+                        postfixStack.Add(operatorStack.Last());
+                    }
+
+                    if(operatorStack.Last() == "(")
+                    {
+                        operatorStack.RemoveAt(operatorStack.Count - 1);
+                    }
+                }
+            }
+
+            while(operatorStack.Count != 0)
+            {
+                postfixStack.Add(operatorStack.Last());
+            }
+
+            return postfixStack;
         }
 
     }
