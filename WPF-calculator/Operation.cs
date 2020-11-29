@@ -6,7 +6,9 @@ namespace WPF_calculator
 {
     class Operation
     {
-
+        /*abandon all hope, ye who enter
+         a bunch of special cases for how parentheses should be added, depending on if there are the same number of left and right parentheses or not,
+        and if the last element in the computeArray is a number, operator, left parenthesis, or right parenthesis.*/
         public List<string> AddParenthesis(List<string> computeArray)
         {
             List<string> parenthesis = new List<String>();
@@ -73,6 +75,8 @@ namespace WPF_calculator
 
             return parenthesis;
         }
+
+        /*check if the input is one of the accepted operators*/
         public static bool IsOperation(string stringToCheck)
         {
             switch (stringToCheck)
@@ -87,6 +91,7 @@ namespace WPF_calculator
             }
         }
 
+        /*check what the priority is for the given operation*/
         public static int Priority(string operatorString)
         {
             switch (operatorString)

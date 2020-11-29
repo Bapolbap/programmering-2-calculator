@@ -17,6 +17,7 @@ namespace WPF_calculator
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// haha poop
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -34,6 +35,7 @@ namespace WPF_calculator
             {
                 switch (button.Content)
                 {
+                    /*handle all the numbers, and the special characters*/
                     case "0":
                     case "1":
                     case "2":
@@ -46,6 +48,15 @@ namespace WPF_calculator
                     case "9":
                     case ",":
                     case "±":
+                        if(computeArray.Count >= 2)
+                        {
+                            if (computeArray[computeArray.Count - 2] == ")")
+                            {
+                                computeArray.RemoveAt(computeArray.Count - 1);
+                                computeArray.Add("×");
+                                computeArray.Add("");
+                            }
+                        }
                         Textfield.Text = "";
                         _number.AppendNumber(Convert.ToString(button.Content));
                         if(computeArray.Count > 0)
@@ -56,20 +67,21 @@ namespace WPF_calculator
 
                     break;
 
+                    /*handle all the operators*/
                     case "+":
                     case "-":
                     case "×":
                     case "÷":
                         if(computeArray.Count > 0)
                         {
-                            //computeArray.Add(_number.addedNumber);
-                            _number.addedNumber = "";
+                            _number.addedNumber = ""; //reset the addedNumber
                             computeArray.Add(Convert.ToString(button.Content));
                             computeArray.Add("");
                         }
                         PrintCurrentExpression();
                     break;
 
+                    /*handle parentheses*/
                     case "( )":
                         foreach(string i in _operation.AddParenthesis(computeArray))
                         {
@@ -80,25 +92,27 @@ namespace WPF_calculator
                         PrintCurrentExpression();
                         break;
 
+                    /*handle the computation*/
                     case "=": 
                         var result = ComputePostfix(ShuntingYard(computeArray));
                         computeArray.Clear();
                         computeArray.Add(result);
                         _number.addedNumber = "";
                         PrintCurrentExpression();
-                        break;
+                    break;
 
+                    /*handle clearing the textfield*/
                     case "AC":
                         computeArray.Clear();
                         computeArray.Add("");
                         Textfield.Text = "";
                         _number.addedNumber = "";
-                        break;
+                    break;
                 }
             }
         }
 
-
+        /*after any buttonpress (except AC) clear the current textfield, then update it with the new buttonpress*/
         private void PrintCurrentExpression()
         {
             Textfield.Text = "";
@@ -108,7 +122,9 @@ namespace WPF_calculator
             }
         }
 
-        //translated the pseudocode example on the shunting yard wikipedia page to c#
+        /*translated the pseudocode example on the shunting yard wikipedia page to c# 
+         there really isn't much more to it. for a better explanaiton, visit the link
+        link: https://en.wikipedia.org/wiki/Shunting-yard_algorithm */
         private List<string> ShuntingYard(List<string> infixStack)
         {
             List<string> postfixStack = new List<string>();
@@ -157,6 +173,9 @@ namespace WPF_calculator
             return postfixStack;
         }
 
+        /*parse the postfix stack, if it's a number, convert it to a double and copy it to a different "numberstack"
+         if it's an operator, apply that operator to the two highest numbers on the numberstack, then move the result to the top of the numberstack
+        repeat until the postfixstack is empty, then return the last remaining number on the numberstack*/
         private string ComputePostfix(List<string> postfixStack)
         {
             List<double> numberStack = new List<double>();
