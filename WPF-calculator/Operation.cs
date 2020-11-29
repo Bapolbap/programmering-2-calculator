@@ -6,6 +6,13 @@ namespace WPF_calculator
 {
     class Operation
     {
+
+        public string AddParenthesis(List<string> computeArray)
+        {
+            var parenthesis = "";
+
+            return parenthesis;
+        }
         public static bool IsOperation(string stringToCheck)
         {
             switch (stringToCheck)

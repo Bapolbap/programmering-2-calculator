@@ -21,10 +21,11 @@ namespace WPF_calculator
     public partial class MainWindow : Window
     {
         public List<string> computeArray = new List<string>();
-
+        private Number _number = new Number();
+        private Operation _operation = new Operation();
         public MainWindow()
         {
-
+            computeArray.Add("");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -34,12 +35,6 @@ namespace WPF_calculator
                 switch (button.Content)
                 {
                     case "0":
-                        if(Textfield.Text.Length >= 1 && Textfield.Text[0] != '0')
-                        {
-                            Textfield.Text += button.Content;
-                        }
-                    break;
-
                     case "1":
                     case "2":
                     case "3":
@@ -49,43 +44,15 @@ namespace WPF_calculator
                     case "7":
                     case "8":
                     case "9":
-                        Textfield.Text += button.Content;
-                    break;
-
-                    case "AC":
-                        Textfield.Text = "";
-                    break;
-
                     case ".":
-                        if(Textfield.Text.Length == 0)
-                        {
-                            Textfield.Text += "0.";
-                        } else if(Textfield.Text.Contains("."))
-                        {
-                            //gör inget
-                            break;
-                        }
-                        else
-                        {
-                            Textfield.Text += ".";
-                        }
-                    break;
-
                     case "±":
-                        if(Textfield.Text.Length != 0)
+                        Textfield.Text = "";
+                        _number.AppendNumber(Convert.ToString(button.Content));
+                        if(computeArray.Count > 0)
                         {
-                            if (Textfield.Text[0] == '-')
-                            {
-                                Textfield.Text = Textfield.Text.Substring(1);
-                            }
-                            else
-                            {
-                                Textfield.Text = "-" + Textfield.Text;
-                            }
-                        } else
-                        {
-                            Textfield.Text = "-";
+                            computeArray[computeArray.Count - 1] = _number.addedNumber;
                         }
+                        PrintCurrentExpression();
 
                     break;
 
@@ -93,30 +60,46 @@ namespace WPF_calculator
                     case "-":
                     case "×":
                     case "÷":
-                        computeArray.Add(Convert.ToString(button.Content));
-                        break;
-                    case "( )":
-
-                    break;
-                    case "=":
-                        List<string> test = new List<string>();
-                        test.Add("3");
-                        test.Add("-");
-                        test.Add("2");
-                        test.Add("×");
-                        test.Add("4");
-                        test.Add("+");
-                        test.Add("5");
-                        /*foreach(string i in ShuntingYard(test))
+                        if(computeArray.Count > 0)
                         {
-                            Textfield.Text += i;
-                        }*/
-                        Textfield.Text = ComputePostfix(ShuntingYard(test));
+                            //computeArray.Add(_number.addedNumber);
+                            _number.addedNumber = "";
+                            computeArray.Add(Convert.ToString(button.Content));
+                            computeArray.Add("");
+                        }
+                        PrintCurrentExpression();
+                    break;
+
+                    case "( )":
+                        computeArray.Add(_operation.AddParenthesis(computeArray));
+                    break;
+
+                    case "=": 
+                        var result = ComputePostfix(ShuntingYard(computeArray));
+                        computeArray.Clear();
+                        computeArray.Add(result);
+                        PrintCurrentExpression();
+                        break;
+
+                    case "AC":
+                        computeArray.Clear();
+                        computeArray.Add("");
+                        Textfield.Text = "";
+                        _number.addedNumber = "";
                         break;
                 }
             }
         }
 
+
+        private void PrintCurrentExpression()
+        {
+            Textfield.Text = "";
+            foreach(string i in computeArray)
+            {
+                Textfield.Text += i;
+            }
+        }
 
         //translated the pseudocode example on the shunting yard wikipedia page to c#
         private List<string> ShuntingYard(List<string> infixStack)
