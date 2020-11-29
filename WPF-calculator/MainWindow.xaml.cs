@@ -71,13 +71,20 @@ namespace WPF_calculator
                     break;
 
                     case "( )":
-                        computeArray.Add(_operation.AddParenthesis(computeArray));
-                    break;
+                        foreach(string i in _operation.AddParenthesis(computeArray))
+                        {
+                            computeArray.Add(i);
+                        }
+                        _number.addedNumber = "";
+                        computeArray.Add("");
+                        PrintCurrentExpression();
+                        break;
 
                     case "=": 
                         var result = ComputePostfix(ShuntingYard(computeArray));
                         computeArray.Clear();
                         computeArray.Add(result);
+                        _number.addedNumber = "";
                         PrintCurrentExpression();
                         break;
 

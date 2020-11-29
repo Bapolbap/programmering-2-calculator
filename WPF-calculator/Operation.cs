@@ -7,9 +7,69 @@ namespace WPF_calculator
     class Operation
     {
 
-        public string AddParenthesis(List<string> computeArray)
+        public List<string> AddParenthesis(List<string> computeArray)
         {
-            var parenthesis = "";
+            List<string> parenthesis = new List<String>();
+            int leftParenthesisCounter = 0;
+            int rightParenthesisCounter = 0;
+
+            if(!(computeArray.Count == 1 && computeArray[0] == ""))
+            {
+                foreach (string i in computeArray)
+                {
+                    if(i == "(")
+                    {
+                        leftParenthesisCounter++;
+                    }
+                    else if(i == ")")
+                    {
+                        rightParenthesisCounter++;
+                    }
+                }
+                if(leftParenthesisCounter == rightParenthesisCounter){
+                    if(Number.IsNumber(computeArray[computeArray.Count - 1]))
+                    {
+                        parenthesis.Add("×");
+                        parenthesis.Add("(");
+                    }
+                    else if(computeArray[computeArray.Count - 2] == ")")
+                    {
+                        computeArray.RemoveAt(computeArray.Count - 1);
+                        parenthesis.Add("×");
+                        parenthesis.Add("(");
+                    }
+                    else if(IsOperation(computeArray[computeArray.Count - 2]))
+                    {
+                        parenthesis.Add("(");
+                    }
+                } 
+                else if(leftParenthesisCounter > rightParenthesisCounter)
+                {
+                    if(IsOperation(computeArray[computeArray.Count - 2]) && !Number.IsNumber(computeArray[computeArray.Count - 1]))
+                    {
+                        computeArray.RemoveAt(computeArray.Count - 1);
+                        parenthesis.Add("(");
+                    }
+                    else if(Number.IsNumber(computeArray[computeArray.Count - 1]))
+                    {
+                        parenthesis.Add(")");
+                    }
+                    else if(computeArray[computeArray.Count - 2] == ")")
+                    {
+                        computeArray.RemoveAt(computeArray.Count - 1);
+                        parenthesis.Add(")");
+                    }
+                    else if(computeArray[computeArray.Count - 2] == "(")
+                    {
+                        computeArray.RemoveAt(computeArray.Count - 1);
+                        parenthesis.Add("(");
+                    }
+                }
+            }
+            else
+            {
+                parenthesis.Add("(");
+            }
 
             return parenthesis;
         }

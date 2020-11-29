@@ -45,7 +45,7 @@ namespace WPF_calculator
                 break;
 
                 case ",":
-                    if (addedNumber.Length == 0)
+                    if ((addedNumber.Length == 0) || (addedNumber.Length == 1 && addedNumber[0] == '-'))
                     {
                         addedNumber += "0,";
                     }
@@ -85,7 +85,7 @@ namespace WPF_calculator
             try
             {
                 var isNumber = Convert.ToDouble(stringToCheck);
-                return true; //if an exception is caught, this line won't be read
+                return true; //if an exception is thrown, this line won't be read
             }
             catch(Exception)
             {
