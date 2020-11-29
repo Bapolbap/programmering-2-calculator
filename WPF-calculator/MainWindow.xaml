@@ -46,7 +46,7 @@
             <Button Click="Button_Click" Grid.Column="2" Grid.Row="3" FontSize="30" Content="3"></Button>
             <Button Click="Button_Click" Grid.Column="3" Grid.Row="3" FontSize="30" Content="+"></Button>
             <Button Click="Button_Click" Grid.ColumnSpan="2" Grid.Row="4" FontSize="30" Content="0"></Button>
-            <Button Click="Button_Click" Grid.Column="2" Grid.Row="4" FontSize="30" Content="."></Button>
+            <Button Click="Button_Click" Grid.Column="2" Grid.Row="4" FontSize="30" Content=","></Button>
             <Button Click="Button_Click" Grid.Column="3" Grid.Row="4" FontSize="30" Content="="></Button>
 
 

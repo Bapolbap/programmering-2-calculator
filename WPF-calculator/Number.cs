@@ -24,7 +24,41 @@ namespace WPF_calculator
                 break;
 
                 case "0":
-                case ".":
+                    if(addedNumber.Length < 0)
+                    {
+                        try
+                        {
+                            if(addedNumber[1] == ',')
+                            {
+                                addedNumber += numberToAdd;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        addedNumber += numberToAdd;
+                    }
+                break;
+
+                case ",":
+                    if (addedNumber.Length == 0)
+                    {
+                        addedNumber += "0,";
+                    }
+                    else if (addedNumber.Contains(","))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        addedNumber += ",";
+                    }
+                    break;
+
                 case "±":
                     if (addedNumber.Length != 0)
                     {
