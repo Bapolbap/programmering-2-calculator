@@ -8,7 +8,7 @@ namespace WPF_calculator
     {
         public static bool IsOperation(string stringToCheck)
         {
-            switch(stringToCheck)
+            switch (stringToCheck)
             {
                 case "+":
                 case "-":
@@ -22,7 +22,7 @@ namespace WPF_calculator
 
         public static int Priority(string operatorString)
         {
-            switch(operatorString)
+            switch (operatorString)
             {
                 case "+":
                 case "-":
@@ -34,22 +34,5 @@ namespace WPF_calculator
                     return 0;
             }
         }
-    }
-    
-    class Addition : Operation
-    {
-
-    }
-    class Subtraction : Operation
-    {
-
-    }
-    class Multiplication : Operation
-    {
-
-    }
-    class Division : Operation
-    {
-
     }
 }

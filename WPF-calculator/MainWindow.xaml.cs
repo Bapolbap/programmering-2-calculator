@@ -20,15 +20,11 @@ namespace WPF_calculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Number _number = new Number();
+        public List<string> computeArray = new List<string>();
+
         public MainWindow()
         {
-            InitializeComponent();
-        }
 
-        public void initializeComponents()
-        {
-            List<string> computeArray = new List<string>();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -53,7 +49,6 @@ namespace WPF_calculator
                     case "7":
                     case "8":
                     case "9":
-                    case "=":
                         Textfield.Text += button.Content;
                     break;
 
@@ -98,13 +93,32 @@ namespace WPF_calculator
                     case "-":
                     case "×":
                     case "÷":
+                        computeArray.Add(Convert.ToString(button.Content));
+                        break;
                     case "( )":
 
                     break;
+                    case "=":
+                        List<string> test = new List<string>();
+                        test.Add("3");
+                        test.Add("-");
+                        test.Add("2");
+                        test.Add("×");
+                        test.Add("4");
+                        test.Add("+");
+                        test.Add("5");
+                        /*foreach(string i in ShuntingYard(test))
+                        {
+                            Textfield.Text += i;
+                        }*/
+                        Textfield.Text = ComputePostfix(ShuntingYard(test));
+                        break;
                 }
             }
         }
 
+
+        //translated the pseudocode example on the shunting yard wikipedia page to c#
         private List<string> ShuntingYard(List<string> infixStack)
         {
             List<string> postfixStack = new List<string>();
@@ -118,9 +132,10 @@ namespace WPF_calculator
                 }
                 else if(Operation.IsOperation(i))
                 {
-                    while((operatorStack.Count != 0) && (Operation.Priority(operatorStack.Last()) > Operation.Priority(i)) && (operatorStack.Last() != "("))
+                    while((operatorStack.Count != 0) && (Operation.Priority(operatorStack.Last()) >= Operation.Priority(i)) && (operatorStack.Last() != "("))
                     {
                         postfixStack.Add(operatorStack.Last());
+                        operatorStack.RemoveAt(operatorStack.Count - 1);
                     }
                     operatorStack.Add(i);
                 }
@@ -133,9 +148,10 @@ namespace WPF_calculator
                     while(operatorStack.Last() != "(")
                     {
                         postfixStack.Add(operatorStack.Last());
+                        operatorStack.RemoveAt(operatorStack.Count - 1);
                     }
 
-                    if(operatorStack.Last() == "(")
+                    if (operatorStack.Last() == "(")
                     {
                         operatorStack.RemoveAt(operatorStack.Count - 1);
                     }
@@ -145,9 +161,45 @@ namespace WPF_calculator
             while(operatorStack.Count != 0)
             {
                 postfixStack.Add(operatorStack.Last());
+                operatorStack.RemoveAt(operatorStack.Count - 1);
             }
 
             return postfixStack;
+        }
+
+        private string ComputePostfix(List<string> postfixStack)
+        {
+            List<double> numberStack = new List<double>();
+
+            foreach(string i in postfixStack)
+            {
+                if(Number.IsNumber(i))
+                {
+                    numberStack.Add(Convert.ToDouble(i));
+                }
+                else if(Operation.IsOperation(i))
+                {
+                    var number1 = numberStack[numberStack.Count - 1];
+                    var number2 = numberStack[numberStack.Count - 2];
+                    numberStack.RemoveAt(numberStack.Count - 1);
+                    numberStack.RemoveAt(numberStack.Count - 1);
+
+                    double result;
+
+                    switch(i)
+                    {
+                        case "+": result = number2 + number1; break;
+                        case "-": result = number2 - number1; break;
+                        case "×": result = number2 * number1; break;
+                        case "÷": result = number2 / number1; break;
+                        default: result = 0; break;
+                    }
+
+                    numberStack.Add(result);
+                }
+            }
+            string answer = Convert.ToString(numberStack[0]);
+            return answer;
         }
 
     }

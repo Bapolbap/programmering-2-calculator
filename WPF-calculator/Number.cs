@@ -15,11 +15,12 @@ namespace WPF_calculator
 
         public static bool IsNumber(string stringToCheck)
         {
-            if(Int32.TryParse(stringToCheck, out int number))
+            try
             {
-                return true;
+                var isNumber = Convert.ToDouble(stringToCheck);
+                return true; //if an exception is caught, this line won't be read
             }
-            else
+            catch(Exception)
             {
                 return false;
             }
